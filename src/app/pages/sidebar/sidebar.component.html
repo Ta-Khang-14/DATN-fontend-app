@@ -1,0 +1,21 @@
+<ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+  <ng-container *ngFor="let item of listSideBarSort">
+    <li
+      nz-submenu
+      nzOpen
+      [nzTitle]="item.Text"
+      [nzIcon]="item.Icon"
+      *ngIf="item.IsShow && item.Role > role"
+    >
+      <ul *ngFor="let itemChild of item.listChild">
+        <li
+          nz-menu-item
+          nzMatchRouter
+          *ngIf="itemChild.IsShow && item.Role > role"
+        >
+          <a>{{ itemChild.Text }}</a>
+        </li>
+      </ul>
+    </li>
+  </ng-container>
+</ul>
