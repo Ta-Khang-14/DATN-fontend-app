@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+.flex {
+  display: flex !important;
+}
+
+.flex-row {
+  flex-direction: row !important;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse !important;
+}
+
+.flex-column {
+  flex-direction: column !important;
+}
+
+.flex-column-reverse {
+  flex-direction: column-reverse !important;
+}
+
+.flex-align-center {
+  align-items: center !important;
+}
+
+.flex-justify-content-around {
+  justify-content: space-around !important;
+}
+
+.flex-justify-content-between {
+  justify-content: space-between !important;
+}
+
+.font-13 {
+  font-size: 13px !important;
+}

@@ -1,0 +1,42 @@
+:host {
+  .product-type {
+    display: flex;
+    align-items: center;
+    .product-type-title {
+      margin: 0px 8px;
+      font-size: 24px;
+      font-weight: 700;
+    }
+    .line-before {
+      width: 50px;
+      height: 5px;
+      border-radius: 5px;
+      background-color: #ffd40d;
+      transform: translateY(2px);
+    }
+    .line-after {
+      flex: 1;
+      height: 5px;
+      border-radius: 5px;
+      background-color: #ffd40d;
+      transform: translateY(2px);
+    }
+  }
+
+  .list-product {
+    display: flex;
+    justify-content: space-between;
+
+    .product-item {
+      padding: 8px 0px;
+
+      ::ng-deep {
+        app-product-card {
+          nz-card {
+            width: 240px !important;
+          }
+        }
+      }
+    }
+  }
+}

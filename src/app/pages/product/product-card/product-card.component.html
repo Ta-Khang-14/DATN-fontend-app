@@ -1,1 +1,72 @@
-<p>product-card works!</p>
+<ng-container *ngIf="false; else productTemplateRibbon">
+  <nz-card
+    style="width: 300px"
+    [nzCover]="coverTemplate"
+    [nzActions]="[voteStart, comment, viewDetail]"
+    [nzHoverable]="true"
+  >
+    <nz-card-meta
+      nzTitle="Card title"
+      nzDescription="This is the description"
+    ></nz-card-meta>
+  </nz-card>
+</ng-container>
+
+<ng-template #productTemplateRibbon>
+  <nz-ribbon nzText="Giảm giá" nzColor="red">
+    <nz-card
+      style="width: 300px"
+      [nzCover]="coverTemplate"
+      [nzActions]="[voteStart, comment, viewDetail]"
+      [nzHoverable]="true"
+    >
+      <nz-card-meta
+        nzTitle="Card title"
+        nzDescription="This is the description"
+      ></nz-card-meta>
+    </nz-card>
+  </nz-ribbon>
+</ng-template>
+
+<ng-template #coverTemplate>
+  <img
+    alt="example"
+    src="https://winsfolio.net/html/foodio/assets/img/featured-dishes-2.png"
+  />
+</ng-template>
+<ng-template #voteStart>
+  <span
+    nz-icon
+    nzType="star"
+    nzTheme="twotone"
+    [nzTwotoneColor]="'#ffec3d'"
+    nz-tooltip
+    [nzTooltipTitle]="'Chấm điểm món'"
+    [nzTooltipColor]="'yellow'"
+    [nzTooltipPlacement]="'bottom'"
+  ></span>
+</ng-template>
+<ng-template #comment>
+  <span
+    nz-icon
+    nzType="message"
+    nzTheme="twotone"
+    nz-tooltip
+    [nzTooltipTitle]="'Viết đánh giá'"
+    [nzTooltipColor]="'blue'"
+    [nzTooltipPlacement]="'bottom'"
+  ></span>
+</ng-template>
+<ng-template #viewDetail>
+  <span
+    nz-icon
+    nzType="eye"
+    nzTheme="twotone"
+    nz-tooltip
+    [nzTooltipTitle]="'Xem chi tiết món'"
+    [nzTooltipColor]="'green'"
+    [nzTooltipPlacement]="'bottom'"
+    [nzTwotoneColor]="'#52c41a'"
+    (click)="openViewDetail($event)"
+  ></span>
+</ng-template>
