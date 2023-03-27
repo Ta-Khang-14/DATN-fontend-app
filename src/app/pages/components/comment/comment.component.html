@@ -1,0 +1,40 @@
+<nz-comment
+  nzAuthor="Han Solo"
+  [nzDatetime]="commentInfo.time"
+  style="border: 1px solid #f0f0f0; padding: 4px 8px"
+>
+  <nz-avatar
+    nz-comment-avatar
+    nzIcon="user"
+    [nzSrc]="commentInfo.avatar"
+  ></nz-avatar>
+  <nz-comment-content>
+    <p>
+      We supply a series of design principles, practical patterns and high
+      quality design resources (Sketch and Axure), to help people create their
+      product prototypes beautifully and efficiently.
+    </p>
+  </nz-comment-content>
+  <nz-comment-action>
+    <span
+      nz-tooltip
+      nzTitle="Like"
+      nz-icon
+      nzType="like"
+      [nzTheme]="likeState ? 'twotone' : 'outline'"
+      (click)="like()"
+    ></span>
+    <span class="count like">{{ commentInfo.likes }}</span>
+  </nz-comment-action>
+  <nz-comment-action>
+    <span
+      nz-tooltip
+      nzTitle="Dislike"
+      nz-icon
+      nzType="dislike"
+      [nzTheme]="dislikeState ? 'twotone' : 'outline'"
+      (click)="dislike()"
+    ></span>
+    <span class="count dislike">{{ commentInfo.dislikes }}</span>
+  </nz-comment-action>
+</nz-comment>

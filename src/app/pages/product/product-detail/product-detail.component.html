@@ -1,1 +1,106 @@
-<p>product-detail works!</p>
+<div class="product-detail">
+  <div nz-row>
+    <div
+      class="product-detail-image"
+      nz-col
+      [nzSpan]="10"
+      style="margin: 0px 16px 16px 0px"
+    >
+      <img
+        style="width: 100%"
+        src="https://winsfolio.net/html/foodio/assets/img/featured-dishes-2.png"
+      />
+    </div>
+    <div class="product-infor" nz-col [nzSpan]="12">
+      <nz-descriptions nzTitle="Thông tin món ăn">
+        <nz-descriptions-item [nzSpan]="12" nzTitle="Thẻ">
+          <nz-tag [nzColor]="'red'">Sản phẩm mới</nz-tag>
+          <nz-tag [nzColor]="'volcano'">Giảm giá</nz-tag>
+          <nz-tag [nzColor]="'orange'">Được mua nhều</nz-tag>
+        </nz-descriptions-item>
+        <nz-descriptions-item [nzSpan]="12" nzTitle="Loại">
+          <nz-tag [nzColor]="'red'">Món chính</nz-tag>
+          <nz-tag [nzColor]="'volcano'">Món mặn</nz-tag>
+        </nz-descriptions-item>
+        <nz-descriptions-item [nzSpan]="12" nzTitle="Giá"
+          >$60.00</nz-descriptions-item
+        >
+        <nz-descriptions-item [nzSpan]="12" nzTitle="Điểm">
+          4.6
+          <span
+            nz-icon
+            nzType="star"
+            nzTheme="twotone"
+            [nzTwotoneColor]="'#ffec3d'"
+            nz-tooltip
+          ></span>
+        </nz-descriptions-item>
+      </nz-descriptions>
+    </div>
+    <ng-container *ngIf="!isComment; else comment">
+      <div class="product-des" style="width: 100%">
+        <div>
+          <nz-divider nzText="Mô tả" nzOrientation="left"></nz-divider>
+          <p>
+            Đỉnh cao của ẩm thực Trung Quốc thường được thể hiện qua các món ăn
+            cung đình, chủ yếu được phục vụ cho các hoàng đế, hoàng hậu, phi tần
+            và các gia đình hoàng tộc. Các hoàng đế Trung Quốc từ xưa đã thu
+            thập những món ngon nhất và thuê những đầu bếp giỏi nhất để chế biến
+            các món ăn đỉnh cao thời xưa, có thể kể đến các nguyên liệu vẫn còn
+            được sử dụng cho tới ngày nay như bào ngư, vi cá mập, hải sâm và tổ
+            yến.
+          </p>
+        </div>
+        <div>
+          <nz-divider nzText="Nguyên liệu" nzOrientation="left"></nz-divider>
+          <p>Cua xanh Cà Mau</p>
+          <p>Gà cháy tỏi</p>
+          <p>Thị lợn giò heo</p>
+        </div>
+      </div>
+
+      <div class="store" style="width: 100%">
+        <nz-divider nzText="Cơ sở phục vụ" nzOrientation="left"></nz-divider>
+        <div class="store-item" style="padding: 8px 0px">
+          <span
+            nz-icon
+            nzType="notification"
+            nzTheme="twotone"
+            style="margin-right: 8px"
+          ></span
+          ><b>Cơ sở Nguyễn Chí Thanh - Cầu Giấy, Bắc Từ Liêm, Nhổn</b>
+        </div>
+        <div class="store-item" style="padding: 8px 0px">
+          <span
+            nz-icon
+            nzType="notification"
+            nzTheme="twotone"
+            style="margin-right: 8px"
+          ></span
+          ><b>Cơ sở Nguyễn Chí Thanh - Cầu Giấy, Bắc Từ Liêm, Nhổn</b>
+        </div>
+        <div class="store-item" style="padding: 8px">
+          <span
+            nz-icon
+            nzType="notification"
+            nzTheme="twotone"
+            style="margin-right: 8px"
+          ></span
+          ><b>Cơ sở Nguyễn Chí Thanh - Cầu Giấy, Bắc Từ Liêm, Nhổn</b>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #comment>
+      <div class="comment" style="width: 100%">
+        <nz-divider nzText="Bình luận về món ăn" nzOrientation="left">
+        </nz-divider>
+        <app-comment></app-comment>
+      </div>
+    </ng-template>
+  </div>
+</div>
+<div class="comment-editer" *ngIf="isComment">
+  <nz-divider nzText="Viết bình luận" nzOrientation="left"></nz-divider>
+  <app-comment-editer></app-comment-editer>
+</div>

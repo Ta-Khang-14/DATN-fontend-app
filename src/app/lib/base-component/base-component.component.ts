@@ -13,6 +13,8 @@ export class BaseComponentComponent implements OnInit {
   @Input()
   role = Role.User;
 
+  userInfor: any = {};
+
   constructor() {}
 
   ngOnInit(): void {}

@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { BaseComponentComponent } from 'src/app/lib/base-component/base-component.component';
+import { TagComponent } from '../../components/tag/tag.component';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
 
 @Component({
   selector: 'app-product-card',
@@ -12,7 +14,9 @@ export class ProductCardComponent
   implements OnInit
 {
   @Input()
-  productDetail: any = {};
+  productDetailData: any = {};
+
+  productDetail: TemplateRef<ProductDetailComponent> | undefined;
 
   constructor(public drawerService: NzDrawerService) {
     super();
@@ -27,6 +31,24 @@ export class ProductCardComponent
     const drawerRef = this.drawerService.create({
       nzTitle: 'Drawer Title',
       nzSize: 'large',
+      nzContent: ProductDetailComponent,
+      nzContentParams: {
+        idProduct: 1,
+      },
+    });
+
+    drawerRef.afterClose.subscribe(() => {});
+  }
+
+  openViewComment(e: any, isComment: boolean) {
+    const drawerRef = this.drawerService.create({
+      nzTitle: 'Drawer Title',
+      nzSize: 'large',
+      nzContent: ProductDetailComponent,
+      nzContentParams: {
+        idProduct: 1,
+        isComment: isComment,
+      },
     });
 
     drawerRef.afterClose.subscribe(() => {});
