@@ -1,0 +1,60 @@
+<section>
+  <div class="container">
+    <div
+      style="background-image: url(assets/img/patron.jpg)"
+      class="reserve-table"
+    >
+      <div class="row">
+        <div class="col-xl-4">
+          <div class="reserve-table-text">
+            <h3>reserve A table</h3>
+            <p>Discover our New Menu !</p>
+          </div>
+        </div>
+        <div class="col-xl-8">
+          <div class="best-food-restaurants">
+            <form role="form" id="reservation-form" method="post">
+              <div class="row">
+                <div class="col-xl-6">
+                  <input
+                    type="text"
+                    name="complete_name"
+                    placeholder="Complete Name"
+                  />
+                </div>
+                <div class="col-xl-6">
+                  <input
+                    type="email"
+                    name="email_address"
+                    placeholder="Email Address"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6">
+                  <input
+                    type="number"
+                    name="No of Guest"
+                    placeholder="No of Guest"
+                  />
+                </div>
+                <div class="col-xl-6">
+                  <div class="row">
+                    <div class="col-xl-6">
+                      <input type="date" name="day" />
+                    </div>
+                    <div class="col-xl-6">
+                      <input type="time" name="time" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="button" type="submit">Reserve a Table</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
