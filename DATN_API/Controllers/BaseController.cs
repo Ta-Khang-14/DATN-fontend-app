@@ -17,6 +17,23 @@ namespace DATN_API.Controllers
             _bLBase = bLBase;
         }
 
+        [HttpGet]
+        [Route("/{id}")]
+        public ServiceResult GetOne([FromRoute] int id)
+        {
+            ServiceResult rs = new ServiceResult();
+            try
+            {
+                rs.Data = null;
+            }
+            catch (Exception ex)
+            {
+                rs.SetError(errorMessage: ex.Message);
+            }
+            return rs;
+        }
+
+
         [HttpPost]
         [Route("")]
         public ServiceResult GetMulti(BaseRequest<T> data)

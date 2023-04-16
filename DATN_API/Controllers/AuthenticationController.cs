@@ -2,70 +2,103 @@
 using API_BO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace DATN_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthenticationController : BaseController<Account>
+    public class AuthenticationController
     {
-        public AuthenticationController(IConfiguration configuration, IBLBase<Account> bLBase) : base(configuration, bLBase)
+        private IBLAccount _bLAccount;
+        private IConfiguration _configuration;
+        public AuthenticationController(IConfiguration configuration, IBLAccount bLAccount)
         {
-        }
-
-        private string GenerateToken(Account account)
-        {
-            // Tạo một payload cho JWT
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.Name, account.AccountName),
-                new Claim(ClaimTypes.Role, account.AccountRole.ToString())
-            };
-
-            // Tạo secret key
-            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
-
-            // Tạo JWT từ payload và secret key
-            var token = new JwtSecurityToken(
-                issuer: _configuration["JWT:ValidIssuer"],
-                audience: _configuration["JWT:ValidAudience"],
-                claims: claims,
-                expires: DateTime.UtcNow.AddDays(1),
-                signingCredentials: new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256)
-            );
-
-            // Chuyển đổi JWT thành chuỗi để trả về cho người dùng
-            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-
-            return tokenString;
+            _configuration = configuration;
+            _bLAccount = bLAccount;
         }
 
         [HttpPost]
         [Route("register")]
-        public ServiceResult Register(Account acc)
+        public ServiceResult Register(BaseRequest<Account> baseRequest)
         {
             ServiceResult result = new ServiceResult();
             try
             {
-                result.Data = GenerateToken(acc);
+                Account acc = baseRequest.Data;
+                result.Data = this._bLAccount.Register(acc);
             }
-            catch (Exception ex)
+            catch (CustomException ex)
             {
-                result.SetError(errorMessage: ex.Message);
+                result.SetError(errorMessage: ex.Message, errorCode: ex.ErrorCode);
+            }
+            return result;
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public ServiceResult Login(Account account)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                result.Data = this._bLAccount.Login(account);
+            }
+            catch (CustomException ex)
+            {
+                result.SetError(errorMessage: ex.Message, errorCode: ex.ErrorCode);
+            }
+            return result;
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("Infor/{id}")]
+        public ServiceResult Infor(int id)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                result.Data = this._bLAccount.Infor(id);
+            }
+            catch (CustomException ex)
+            {
+                result.SetError(errorMessage: ex.Message, errorCode: ex.ErrorCode);
             }
             return result;
         }
 
         [Authorize]
         [HttpPost]
-        [Route("getData")]
-        public ServiceResult GetData()
+        [Route("Accounts")]
+        public ServiceResult Accounts(BaseRequest<Account> data)
         {
-            return new ServiceResult();
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                result.Data = this._bLAccount.Accounts(data);
+            }
+            catch (CustomException ex)
+            {
+                result.SetError(errorMessage: ex.Message, errorCode: ex.ErrorCode);
+            }
+            return result;
+        }
+
+        [Authorize]
+        [HttpPut]
+        [Route("Accounts/change-password")]
+        public ServiceResult ChangePassword(Dictionary<string, object> data)
+        {
+            ServiceResult result = new ServiceResult();
+            try
+            {
+                result.Data = this._bLAccount.ChangePassword(data);
+            }
+            catch (CustomException ex)
+            {
+                result.SetError(errorMessage: ex.Message, errorCode: ex.ErrorCode);
+            }
+            return result;
         }
     }
 }

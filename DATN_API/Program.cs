@@ -34,6 +34,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped(typeof(IDLBase<>), typeof(DLBase<>));
 builder.Services.AddScoped(typeof(IBLBase<>), typeof(BLBase<>));
 
+builder.Services.AddScoped<IBLAccount, BLAccount>();
+
 builder.Services.AddScoped<IDapperDataAccess, DapperDataAccess>();
 builder.Services.AddScoped<IDLAccount, DLAccount>();
 

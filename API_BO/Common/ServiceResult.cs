@@ -10,14 +10,17 @@ namespace API_BO
 
         public HttpStatusCode? StatusCode { get; set; }
 
+        public ErrorCode ErrorCode { get; set; }
+
         public string? ErrorMessage { get; set; }
 
-        public ServiceResult(bool success, object data, HttpStatusCode statusCode, string errorMessage)
+        public ServiceResult(bool success, object data, HttpStatusCode statusCode, string errorMessage, ErrorCode errorCode)
         {
             Success = success;
             Data = data;
             StatusCode = statusCode;
             ErrorMessage = errorMessage;
+            ErrorCode = errorCode;
         }
 
         public ServiceResult(bool success, object data)
@@ -32,13 +35,22 @@ namespace API_BO
             StatusCode = HttpStatusCode.OK;
         }
 
-        public void SetError(HttpStatusCode statusCode = HttpStatusCode.BadGateway, string errorMessage = "Unknown Error")
+        public void SetError(HttpStatusCode statusCode = HttpStatusCode.BadGateway, string errorMessage = "Unknown Error", ErrorCode errorCode = ErrorCode.UnknowError)
         {
             Success = false;
             Data = null;
+            ErrorCode = errorCode;
             StatusCode = statusCode;
-            ErrorMessage = ErrorMessage;
+            ErrorMessage = errorMessage;
 
+        }
+
+        public void SetErrorException(CustomException e)
+        {
+            Success = false;
+            Data = null;
+            StatusCode = e.StatusCode;
+            ErrorMessage = e.Message;
         }
     }
 }
