@@ -8,6 +8,9 @@ import { MenuComponent } from './menu/menu.component';
 import { SubMenuComponent } from './sub-menu/sub-menu.component';
 import { BookTableComponent } from './book-table/book-table.component';
 import { SharedModule } from '../shared/shared.module';
+import { InstaLinkComponent } from './insta-link/insta-link.component';
+import { RecentNewsComponent } from './recent-news/recent-news.component';
+import { ListChefsComponent } from './list-chefs/list-chefs.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,9 @@ import { SharedModule } from '../shared/shared.module';
     MenuComponent,
     SubMenuComponent,
     BookTableComponent,
+    InstaLinkComponent,
+    RecentNewsComponent,
+    ListChefsComponent,
   ],
   imports: [CommonModule, HomeRoutingModule, SharedModule],
   exports: [HomeComponent, IntroduceComponent],
