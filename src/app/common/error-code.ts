@@ -13,4 +13,7 @@ export enum ErrorCode {
 
   // Thiếu dữ liệu đầu vào
   MissingInputValue = 4,
+
+  // Sai tài khoản mật khẩu
+  WrongPasswordOrUserName = 5,
 }

@@ -1,1 +1,267 @@
-<p>account works!</p>
+<section
+  class="banner"
+  style="background-image: url('../../assets/img/footer.png')"
+>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <div class="title-area-data">
+          <h2 style="font-family: 'Epilogue'; font-weight: 900">
+            Thông tin cá nhân
+          </h2>
+          <p>Theo dõi thông tin cá nhân và đơn hàng của bạn</p>
+        </div>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a
+              [routerLink]="'/home'"
+              style="font-family: 'Epilogue'; font-weight: 900"
+              ><i class="fa-solid fa-house"></i> Trang chủ</a
+            >
+          </li>
+          <li
+            class="breadcrumb-item active"
+            style="
+              font-family: 'Epilogue';
+              font-weight: 900;
+              transform: translateY(1.5px);
+            "
+            aria-current="page"
+          >
+            Thông tin cá nhân
+          </li>
+        </ol>
+      </div>
+      <div class="col-lg-5">
+        <div class="row">
+          <div class="col-6">
+            <div class="title-area-img">
+              <img
+                alt="title-area-img"
+                src="../../assets/img/title-area-img-1.jpg"
+              />
+              <img alt="pata" class="pata" src="assets/img/pata.png" />
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="title-area-img two">
+              <img
+                alt="title-area-img"
+                src="../../assets/img/title-area-img-2.jpg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="gap" style="padding-top: 60px">
+  <div class="container">
+    <div class="woocommerce-cart-form">
+      <div class="row mt-5">
+        <div class="col-lg-4">
+          <div class="coupon-area">
+            <h3>Thông tin cá nhân</h3>
+            <div class="coupon">
+              <input
+                type="text"
+                name="coupon_code"
+                class="input-text"
+                placeholder="vietkhang04@gmail.com"
+                disabled
+              />
+              <input
+                type="text"
+                name="coupon_code"
+                class="input-text"
+                placeholder="0329264021"
+                disabled
+              />
+              <ng-container *ngIf="isOpenChangePassword">
+                <input
+                  type="password"
+                  name="coupon_code"
+                  class="input-text"
+                  placeholder="Nhập mật khẩu"
+                  style="font-family: 'Epilogue'; font-weight: 900"
+                  [(ngModel)]="objectPassword.AccountPassword"
+                />
+                <input
+                  type="password"
+                  name="coupon_code"
+                  class="input-text"
+                  placeholder="Nhập mật khẩu mới"
+                  style="font-family: 'Epilogue'; font-weight: 900"
+                  [(ngModel)]="objectPassword.NewPassword"
+                />
+                <input
+                  type="password"
+                  name="coupon_code"
+                  class="input-text"
+                  placeholder="Xác nhận mật khẩu"
+                  style="font-family: 'Epilogue'; font-weight: 900"
+                  [(ngModel)]="objectPassword.ConfirmPassword"
+                />
+                <div
+                  style="
+                    margin-bottom: 20px;
+                    color: red;
+                    font-family: 'Epilogue';
+                    font-weight: 900;
+                  "
+                  *ngIf="validate.success"
+                >
+                  {{ validate.message }}
+                </div>
+              </ng-container>
+              <button
+                name="apply_coupon"
+                style="font-family: 'Epilogue'; font-weight: 900"
+                (click)="clickChangePassword()"
+              >
+                <span>Đổi mật khẩu</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="cart_totals">
+            <h4 style="font-family: 'Epilogue'; font-weight: 900">
+              Thông tin đơn hàng đã đặt
+            </h4>
+            <div class="shop_table-boder">
+              <table class="shop_table_responsive">
+                <tbody>
+                  <tr
+                    class="cart-subtotal"
+                    style="font-family: 'Epilogue'; font-weight: 900"
+                  >
+                    <th>Mã đơn hàng:</th>
+                    <td>
+                      <span class="woocommerce-Price-amount">
+                        <bdi> MDH000001 </bdi>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr
+                    class="cart-subtotal"
+                    style="font-family: 'Epilogue'; font-weight: 900"
+                  >
+                    <th>Tiền hàng:</th>
+                    <td>
+                      <span class="woocommerce-Price-amount">
+                        <bdi>
+                          250.00
+                          <span class="woocommerce-Price-currencySymbol"
+                            >VNĐ</span
+                          >
+                        </bdi>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr
+                    class="Shipping"
+                    style="font-family: 'Epilogue'; font-weight: 900"
+                  >
+                    <th>Tiền vận chuyển:</th>
+                    <td>
+                      <span class="woocommerce-Price-amount amount">
+                        Miễn phí
+                      </span>
+                    </td>
+                  </tr>
+                  <tr
+                    class="Total"
+                    style="font-family: 'Epilogue'; font-weight: 900"
+                  >
+                    <th>Tổng tiền:</th>
+                    <td>
+                      <span class="woocommerce-Price-amount">
+                        <bdi>250.00 <span>VNĐ</span></bdi>
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="shop_table-boder">
+              <table class="shop_table_responsive">
+                <tbody>
+                  <tr
+                    class="cart-subtotal"
+                    style="font-family: 'Epilogue'; font-weight: 900"
+                  >
+                    <th>Mã đơn hàng:</th>
+                    <td>
+                      <span class="woocommerce-Price-amount">
+                        <bdi> MDH000001 </bdi>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr
+                    class="cart-subtotal"
+                    style="font-family: 'Epilogue'; font-weight: 900"
+                  >
+                    <th>Loại đơn hàng:</th>
+                    <td>
+                      <span class="woocommerce-Price-amount">
+                        <bdi> Đặt bàn </bdi>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr
+                    class="cart-subtotal"
+                    style="font-family: 'Epilogue'; font-weight: 900"
+                  >
+                    <th>Tiền hàng:</th>
+                    <td>
+                      <span class="woocommerce-Price-amount">
+                        <bdi>
+                          250.00
+                          <span class="woocommerce-Price-currencySymbol"
+                            >VNĐ</span
+                          >
+                        </bdi>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr
+                    class="Shipping"
+                    style="font-family: 'Epilogue'; font-weight: 900"
+                  >
+                    <th>Tiền vận chuyển:</th>
+                    <td>
+                      <span class="woocommerce-Price-amount amount">
+                        Miễn phí
+                      </span>
+                    </td>
+                  </tr>
+                  <tr
+                    class="Total"
+                    style="font-family: 'Epilogue'; font-weight: 900"
+                  >
+                    <th>Tổng tiền:</th>
+                    <td>
+                      <span class="woocommerce-Price-amount">
+                        <bdi>250.00 <span>VNĐ</span></bdi>
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div
+              class="wc-proceed-to-checkout"
+              style="font-family: 'Epilogue'; font-weight: 900"
+            >
+              <a href="#" class="button">
+                <span>Xem tất cả</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

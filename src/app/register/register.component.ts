@@ -4,7 +4,7 @@ import { LocalStorage } from '../common/local-storage';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorCode } from '../common/error-code';
 import { Ultility } from '../common/ultility';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { DataService } from '../service/data.service';
 
 @Component({

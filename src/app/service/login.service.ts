@@ -20,4 +20,15 @@ export class LoginService extends BaseService {
       headers,
     });
   }
+
+  changePassword(data: any) {
+    let headers = this.setHeader();
+    return this.http.put<ResponseAPI>(
+      `${this.enpoint}Accounts/change-password`,
+      data,
+      {
+        headers,
+      }
+    );
+  }
 }

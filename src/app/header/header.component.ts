@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   routerRegister = '/login';
 
   ngOnInit(): void {
+    this.getUserName();
     this.datasv.registerSuccessfully.subscribe((res) => {
       this.getUserName();
     });
