@@ -4,7 +4,7 @@ import { DoashboardComponent } from './doashboard/doashboard.component';
 
 const routes: Routes = [
   { path: '', component: DoashboardComponent },
-  { path: '/doashboard', component: DoashboardComponent },
+  { path: 'doashboard', component: DoashboardComponent },
 ];
 
 @NgModule({

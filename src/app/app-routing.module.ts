@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminRoutingModule } from './admin/admin-routing.module';
 import { DoashboardComponent } from './admin/doashboard/doashboard.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProductViewComponent } from './admin/product-view/product-view.component';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,28 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    children: [{ path: '', component: DashboardComponent }],
+    children: [
+      { path: '', component: DoashboardComponent },
+      { path: 'product', component: ProductViewComponent },
+      {
+        path: 'product-form',
+        component: ProductFormComponent,
+        data: {
+          FormMode: 1,
+        },
+      },
+      {
+        path: 'product-edit/:id',
+        component: ProductFormComponent,
+        data: {
+          FormMode: 2,
+        },
+      },
+      {
+        path: 'product-detail/:id',
+        component: ProductDetailComponent,
+      },
+    ],
   },
 ];
 

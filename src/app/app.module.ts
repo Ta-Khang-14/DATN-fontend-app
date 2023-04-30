@@ -13,7 +13,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthInterceptorInterceptor } from './Interceptor/auth-interceptor.interceptor';
 import { MatIconModule } from '@angular/material/icon';
 import { NgChartsModule } from 'ng2-charts';
-import { ChartModule } from './chart/chart.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +28,7 @@ import { ChartModule } from './chart/chart.module';
     MatSnackBarModule,
     MatIconModule,
     NgChartsModule,
-    ChartModule,
+    AdminModule,
   ],
   providers: [
     {

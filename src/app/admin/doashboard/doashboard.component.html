@@ -41,10 +41,31 @@
   <div href="#" class="button title-dashboard">Biểu đồ</div>
   <div class="row chart">
     <div class="col-lg-5">
-      <div class="chart-wrapper"></div>
+      <div class="chart-wrapper">
+        <div class="chart-tile">Doanh thu theo tháng</div>
+        <div style="display: block">
+          <canvas
+            baseChart
+            [datasets]="chartData"
+            [labels]="chartLabels"
+            [options]="chartOptions"
+            [type]="'bar'"
+          ></canvas>
+        </div>
+      </div>
     </div>
     <div class="col-lg-7">
-      <div class="chart-wrapper"></div>
+      <div class="chart-wrapper">
+        <div style="display: block">
+          <canvas
+            baseChart
+            [datasets]="chartData"
+            [labels]="chartLabels"
+            [options]="chartOptions"
+            [type]="'line'"
+          ></canvas>
+        </div>
+      </div>
     </div>
   </div>
 </div>

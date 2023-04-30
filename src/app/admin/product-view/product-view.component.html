@@ -1,0 +1,122 @@
+<div class="container product-view">
+  <div class="row" style="justify-content: space-between">
+    <div class="button" style="width: 220px" (click)="addProduct()">
+      Thêm sản phẩm
+    </div>
+    <div class="button" style="width: 160px">Xuất khẩu</div>
+  </div>
+</div>
+
+<div class="container product-view-list">
+  <div class="woocommerce-cart-form">
+    <div style="overflow-x: auto; overflow-y: hidden">
+      <table class="shop_table table-responsive">
+        <thead>
+          <tr>
+            <th><input type="checkbox" /></th>
+            <th class="product-name">Sản phẩm</th>
+            <th class="product-subtotal">Giá</th>
+            <th class="product-quantity">Hành động</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="checkbox" /></td>
+            <td class="product-name">
+              <img alt="img" src="https://via.placeholder.com/111x111" />
+              <div>
+                <a [routerLink]="'/admin/product-detail/:id'"
+                  >Blue Cheese & Ham</a
+                >
+                <span>Sausage, three rashers of streaky bacon</span>
+              </div>
+            </td>
+            <td class="product-subtotal">
+              <span class="woocommerce-Price-amount"
+                ><bdi
+                  ><span class="woocommerce-Price-currencySymbol">$</span
+                  >9.00</bdi
+                ></span
+              >
+            </td>
+            <td class="product-quantity">
+              <input type="number" class="input-text" value="1" />
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" /></td>
+            <td class="product-name">
+              <img alt="img" src="https://via.placeholder.com/111x111" />
+              <div>
+                <a [routerLink]="'/admin/product-detail/:id'"
+                  >Blue Cheese & Ham</a
+                >
+                <span>Sausage, three rashers of streaky bacon</span>
+              </div>
+            </td>
+            <td class="product-subtotal">
+              <span class="woocommerce-Price-amount"
+                ><bdi
+                  ><span class="woocommerce-Price-currencySymbol">$</span
+                  >9.00</bdi
+                ></span
+              >
+            </td>
+            <td class="product-quantity">
+              <input type="number" class="input-text" value="1" />
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" /></td>
+            <td class="product-name">
+              <img alt="img" src="https://via.placeholder.com/111x111" />
+              <div>
+                <a [routerLink]="'/admin/product-detail/:id'"
+                  >Blue Cheese & Ham</a
+                >
+                <span>Sausage, three rashers of streaky bacon</span>
+              </div>
+            </td>
+            <td class="product-subtotal">
+              <span class="woocommerce-Price-amount"
+                ><bdi
+                  ><span class="woocommerce-Price-currencySymbol">$</span
+                  >9.00</bdi
+                ></span
+              >
+            </td>
+            <td class="product-quantity">
+              <input type="number" class="input-text" value="1" />
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="coupon">
+            <td colspan="4">
+              <div class="d-flex align-items-center justify-content-between">
+                <button
+                  type="submit"
+                  name="apply_coupon"
+                  class="apply-coupon"
+                  value="Apply coupon"
+                >
+                  Apply coupon
+                </button>
+                <button
+                  type="submit"
+                  name="update_cart"
+                  class="update-cart"
+                  value="Update cart"
+                  disabled=""
+                  aria-disabled="true"
+                >
+                  Update Cart
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+.product-view {
+  font-family: "Epilogue";
+  font-weight: 900;
+  margin-top: 24px;
+  margin-bottom: 32px;
+}
+.product-view-list {
+  margin-bottom: 32px;
+  font-family: "Epilogue";
+}
+.font-weight {
+  font-weight: 900;
+}
+.button {
+  cursor: pointer;
+}

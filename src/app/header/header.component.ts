@@ -10,6 +10,7 @@ import { LocalStorage } from '../common/local-storage';
 export class HeaderComponent implements OnInit {
   constructor(public datasv: DataService) {}
 
+  isAdmin = true;
   userName: string = '';
   routerRegister = '/login';
 
