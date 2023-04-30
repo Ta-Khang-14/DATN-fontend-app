@@ -3,8 +3,8 @@
   font-weight: 900;
 }
 .main-font {
-  font-family: "Epilogue";
-  font-weight: 900;
+  font-family: "Epilogue" !important;
+  font-weight: 900 !important;
 }
 .font-weight {
   font-weight: 900;

@@ -10,87 +10,90 @@
               class="input-text"
               name="billing_name"
               placeholder="Tiêu đề sản phẩm"
+              [(ngModel)]="objectSave.Title"
             />
             <input
-              type="email"
+              type="text"
+              class="input-text"
+              name="billing_name"
+              placeholder="Nguyên liệu"
+              [(ngModel)]="objectSave.Material"
+            />
+            <input
+              type="number"
               class="input-text"
               name="billing_email"
-              placeholder="Nhập nguyên liệu"
+              placeholder="Giá"
+              [(ngModel)]="objectSave.Price"
             />
             <select
               name="billing_country"
               class="nice-select Advice country_to_state"
             >
-              <option>Country</option>
+              <option>Chọn tags</option>
               <option>Select Topic 1</option>
               <option>Select Topic 2</option>
               <option>Select Topic 3</option>
               <option>Select Topic 4</option>
             </select>
-            <div class="row">
-              <div class="col-lg-6">
-                <select name="billing_country" class="nice-select Advice city">
-                  <option>City</option>
-                  <option>Select Topic 1</option>
-                  <option>Select Topic 2</option>
-                  <option>Select Topic 3</option>
-                  <option>Select Topic 4</option>
-                </select>
-              </div>
-              <div class="col-lg-6">
-                <select
-                  name="billing_country"
-                  class="nice-select Advice state province"
-                >
-                  <option>State / Province</option>
-                  <option>Select Topic 1</option>
-                  <option>Select Topic 2</option>
-                  <option>Select Topic 3</option>
-                  <option>Select Topic 4</option>
-                </select>
-              </div>
-              <div class="col-lg-6">
-                <input
-                  type="text"
-                  name="Postal_Code"
-                  placeholder="Postal Code"
-                />
-              </div>
-              <div class="col-lg-6">
-                <input
-                  type="tel"
-                  class="input-text"
-                  name="billing_phone"
-                  placeholder="Phone"
-                />
-              </div>
-            </div>
-            <input type="text" name="Address" placeholder="Address" />
-            <div class="ship-address">
-              <div class="d-flex">
-                <input type="radio" id="Create" name="Create" value="Create" />
-                <label for="Create"> Create an account for later use </label>
-              </div>
-              <div class="d-flex">
-                <input
-                  type="radio"
-                  id="ShipAddress"
-                  name="Create"
-                  value="ShipAddress"
-                />
-                <label for="ShipAddress"> Ship to same Address </label>
-              </div>
-            </div>
           </div>
-          <div class="woocommerce-additional-fields">
+          <div class="woocommerce-additional-fields custom-des">
+            <h3 class="pb-3">Mô tả</h3>
             <textarea
               name="order_comments"
               class="input-text"
-              placeholder="Order Note"
+              placeholder="Mô tả"
+              [(ngModel)]="objectSave.Description"
             ></textarea>
+            <h3 class="pbc-5">Thêm hình ảnh cho mô tả</h3>
+            <input
+              type="file"
+              class="input-file"
+              multiple
+              (change)="onFileDesSelected($event)"
+            />
           </div>
+          <div
+            class="over-view-img"
+            #overviewImgDes
+            style="margin: 12px 0px"
+          ></div>
+          <div class="woocommerce-additional-fields custom-des">
+            <h3 class="pb-3">Lợi ích</h3>
+            <textarea
+              name="order_comments"
+              class="input-text"
+              placeholder="Mô tả"
+              [(ngModel)]="objectSave.Benefit"
+            ></textarea>
+
+            <h3 class="pbc-5">Thêm hình ảnh cho mô tả</h3>
+            <input
+              type="file"
+              class="input-file"
+              (change)="onFileBenefitSelected($event)"
+            />
+          </div>
+          <div
+            class="over-view-img"
+            #overviewImgBenefit
+            style="margin: 12px 0px"
+          ></div>
         </div>
       </div>
     </form>
+    <div
+      class="button main-font"
+      style="
+        float: right;
+        margin-top: 24px;
+        font-family: 'Epilogue';
+        font-weight: 900;
+        cursor: pointer;
+      "
+      (click)="saveProduct()"
+    >
+      Thêm sản phẩm
+    </div>
   </div>
 </section>
