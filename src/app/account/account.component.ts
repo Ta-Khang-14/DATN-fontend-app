@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorCode } from '../common/error-code';
 import { Ultility } from '../common/ultility';
 import { catchError } from 'rxjs';
+import { LocalStorage } from '../common/local-storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -29,9 +31,15 @@ export class AccountComponent implements OnInit {
 
   isOpenChangePassword = false;
 
-  constructor(public accountSv: LoginService, private _snackBar: MatSnackBar) {}
+  constructor(
+    public accountSv: LoginService,
+    private _snackBar: MatSnackBar,
+    public route: Router
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAccountInfor();
+  }
 
   clickChangePassword() {
     if (this.isOpenChangePassword) {
@@ -93,5 +101,23 @@ export class AccountComponent implements OnInit {
         Ultility.showSnackBar(this._snackBar, message, 'danger');
       }
     });
+  }
+
+  // lấy thông tin tài khoản
+  getAccountInfor() {
+    let _this = this;
+    let email = LocalStorage.getLocalStorage('user_email');
+    if (!email) {
+      this.route.navigate(['/login']);
+    } else {
+      this.accountSv.getInfor(email).subscribe((res) => {
+        if (res && res.success) {
+          _this.objectData.AccountEmail = res.data?.AccountEmail;
+          _this.objectData.AccountPhone = res.data?.AccountPhone;
+        } else {
+          Ultility.showSnackBar(_this._snackBar, 'Có lỗi xảy ra');
+        }
+      });
+    }
   }
 }

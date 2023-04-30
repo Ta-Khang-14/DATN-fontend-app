@@ -101,7 +101,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500&display=swap");
 
 body {
-  font-family: "Fredoka One";
+  font-family: "Fredoka One" !important;
   overflow-x: hidden;
 }
 p {
@@ -110,7 +110,7 @@ p {
   color: #555;
   margin: 0;
   font-weight: 400;
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
 }
 * {
   margin: 0;
@@ -496,7 +496,7 @@ figure {
   align-items: center;
 }
 .featured-area h5 {
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
   padding-top: 20px;
   padding-bottom: 50px;
   line-height: 34px;
@@ -595,7 +595,7 @@ section.slider-hero {
   border-radius: 5px;
   top: -16px;
   right: 22px;
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
 }
 /* 7. heading */
 .heading span {
@@ -947,7 +947,7 @@ section.slider-hero {
 }
 .featured-dishes p {
   font-size: 28px;
-  font-family: "Fredoka One";
+  font-family: "Fredoka One" !important;
 }
 .featured-dishes h5 {
   padding-top: 5px;
@@ -1155,7 +1155,7 @@ img.quote {
 }
 ul.higher-reach li {
   font-size: 18px;
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
   font-weight: 400;
   color: #555;
   display: flex;
@@ -1289,7 +1289,7 @@ ul.higher-reach {
 }
 .logo-white p {
   color: white;
-  font-family: "Fredoka One";
+  font-family: "Fredoka One" !important;
   margin-top: 34px;
   margin-bottom: 30px;
 }
@@ -1305,7 +1305,7 @@ ul.higher-reach {
   margin-bottom: 40px;
 }
 .link-about a {
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
 }
 .link-about i {
   padding-right: 10px;
@@ -1319,7 +1319,7 @@ ul.higher-reach {
   height: 60px;
   border-radius: 10px;
   padding-left: 30px;
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
   border: 1px solid #dedede;
   margin-bottom: 26px;
   margin-top: 15px;
@@ -1375,7 +1375,7 @@ footer {
   color: #555;
   margin-bottom: 20px;
   outline: none;
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
   padding-left: 20px;
   height: 60px;
   border-radius: 10px;
@@ -2532,7 +2532,7 @@ header.three .contact svg {
   margin-top: 60px;
 }
 .link-about.Newsletter label {
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
   color: white;
 }
 .link-about.Newsletter p {
@@ -2665,7 +2665,7 @@ ol.breadcrumb a,
   padding-left: 30px;
   border-radius: 20px;
   width: 100%;
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
   outline: none;
 }
 .box form button {
@@ -2835,7 +2835,7 @@ table.shop_table td.product-name span {
   font-size: 16px;
   color: #555;
   display: block;
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
 }
 table.shop_table td.product-subtotal span {
   font-size: 22px;
@@ -2886,7 +2886,7 @@ form.checkout-meta input {
   border: 3px solid #d6deec;
   color: black;
   outline: none;
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
 }
 form.checkout-meta input::placeholder {
   color: black;
@@ -2899,7 +2899,7 @@ form.checkout-meta.donate-page .nice-select.Advice {
   padding-left: 30px;
   border: 3px solid #d6deec;
   padding-top: 10px;
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
 }
 .nice-select:after {
   right: 25px;
@@ -2917,7 +2917,7 @@ ul.list {
 .ship-address label {
   padding-left: 30px;
   padding-top: 10px;
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
 }
 .ship-address input[type="radio"]:after {
   top: 16px;
@@ -2947,7 +2947,7 @@ ul.list {
   color: black;
   border: 3px solid #d6deec;
   outline: none;
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
 }
 .woocommerce-additional-fields textarea.input-text::placeholder {
   color: black;
@@ -3132,7 +3132,7 @@ ul.product_meta li a {
   justify-content: space-between;
 }
 .benefits ul li h6 {
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
 }
 
 /* 66. review */
@@ -3178,7 +3178,7 @@ ul.product_meta li a {
 .leave-comment input {
   width: 100%;
   height: 65px;
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
   border: 3px solid #d6deec;
   outline: none;
   margin-bottom: 20px;
@@ -3199,7 +3199,7 @@ ul.product_meta li a {
   height: 190px;
   padding-top: 22px;
   border: 3px solid #d6deec;
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
   outline: none;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -3266,7 +3266,7 @@ img.pata-one {
 }
 .parties-events-text .quality-foods {
   margin-top: 24px;
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
 }
 .seated {
   text-align: center;
@@ -3494,7 +3494,7 @@ ul.trending-dishes-list li {
   padding-top: 15px;
 }
 ul.higher-reach a {
-  font-family: "Fredoka One";
+  font-family: "Fredoka One" !important;
   font-weight: 400;
   color: #333333;
 }
@@ -4340,12 +4340,12 @@ table.shop_table.table-responsive .coupon {
   font-size: 40px;
   font-weight: 600;
   color: #000;
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
 }
 
 .swal-text {
   color: #666;
-  font-family: "Epilogue";
+  font-family: "Epilogue" !important;
   text-align: center;
   line-height: 23px;
 }

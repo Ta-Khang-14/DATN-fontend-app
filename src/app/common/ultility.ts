@@ -3,7 +3,7 @@ export class Ultility {
   static showSnackBar(
     snackbar: MatSnackBar,
     message: string = '',
-    type: string = ''
+    type: string = 'danger'
   ) {
     if (message && type) {
       snackbar.open(message, 'Đóng', {

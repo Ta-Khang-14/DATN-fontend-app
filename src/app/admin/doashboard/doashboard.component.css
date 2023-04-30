@@ -1,0 +1,28 @@
+.title-dashboard {
+  margin: 24px 0px;
+  font-family: "Epilogue";
+  font-weight: 900;
+}
+.dashboard-item {
+  background-color: #f5f8fd;
+  border-radius: 16px;
+  height: 64px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  font-family: "Epilogue";
+  font-weight: 900;
+}
+.icon-dashboard {
+  flex-basis: 30%;
+}
+
+.dashboard-item.value {
+  flex-basis: 70%;
+}
+
+.chart-wrapper {
+  background-color: #f5f8fd;
+  border-radius: 16px;
+  padding: 16px;
+}
