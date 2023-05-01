@@ -17,13 +17,15 @@ function HomePage() {
     const posts = useSelector((state) => state.posts.listPosts);
 
     useEffect(() => {
-        if (categories.length > 0 && products.length === 0) {
+        if (categories && categories.length > 0 && products.length === 0) {
             try {
                 dispatch(showLoading());
-
-                dispatch(fetchProductsHomePage(categories[5]._id));
-                dispatch(fetchProductsHomePage(categories[4]._id));
+                dispatch(fetchProductsHomePage(categories[0]._id));
                 dispatch(fetchProductsHomePage(categories[1]._id));
+                dispatch(fetchProductsHomePage(categories[2]._id));
+                dispatch(fetchProductsHomePage(categories[3]._id));
+                dispatch(fetchProductsHomePage(categories[4]._id));
+                dispatch(fetchProductsHomePage(categories[5]._id));
                 dispatch(hideLoading());
             } catch (error) {}
         }
@@ -81,47 +83,58 @@ function HomePage() {
     };
 
     const renderHomeProducts = () => {
-        if (products.length > 0) {
+        if (products && products.length > 0) {
             return products.map((item) => {
-                const cate = categories.find(
-                    (cate) => cate._id === item[0].category
-                );
-                return (
-                    <Col md="12" className="home__slider" key={cate._id}>
-                        <div className="home__link--wrap">
-                            <Link
-                                to={`/category?id=${cate._id}`}
-                                className="home__link"
+                if (categories) {
+                    const cate = categories.find(
+                        (cate) => cate._id === (item[0] && item[0].category)
+                    );
+                    if (cate) {
+                        return (
+                            <Col
+                                md="12"
+                                className="home__slider"
+                                key={cate._id}
                             >
-                                {cate.name}
-                            </Link>
-                        </div>
-                        <div className="d-none d-sm-none d-md-block d-lg-none overflow-hidden">
-                            <ProductSlider
-                                dots={false}
-                                slidesToShow={3}
-                                slidesToScroll={2}
-                                products={item}
-                            />
-                        </div>
-                        <div className="d-sm-block d-md-none d-lg-none overflow-hidden">
-                            <ProductSlider
-                                dots={false}
-                                slidesToShow={2}
-                                slidesToScroll={2}
-                                products={item}
-                            />
-                        </div>
-                        <div className="d-none d-sm-none d-md-none d-lg-block overflow-hidden">
-                            <ProductSlider
-                                dots={false}
-                                slidesToShow={5}
-                                slidesToScroll={5}
-                                products={item}
-                            />
-                        </div>
-                    </Col>
-                );
+                                <div className="home__link--wrap">
+                                    <Link
+                                        to={`/category?id=${cate._id}`}
+                                        className="home__link"
+                                    >
+                                        {cate.name}
+                                    </Link>
+                                </div>
+                                <div className="d-none d-sm-none d-md-block d-lg-none overflow-hidden">
+                                    <ProductSlider
+                                        dots={false}
+                                        slidesToShow={3}
+                                        slidesToScroll={2}
+                                        products={item}
+                                    />
+                                </div>
+                                <div className="d-sm-block d-md-none d-lg-none overflow-hidden">
+                                    <ProductSlider
+                                        dots={false}
+                                        slidesToShow={2}
+                                        slidesToScroll={2}
+                                        products={item}
+                                    />
+                                </div>
+                                <div className="d-none d-sm-none d-md-none d-lg-block overflow-hidden">
+                                    <ProductSlider
+                                        dots={false}
+                                        slidesToShow={5}
+                                        slidesToScroll={5}
+                                        products={item}
+                                    />
+                                </div>
+                            </Col>
+                        );
+                    }
+                    return "";
+                } else {
+                    return "";
+                }
             });
         }
     };
