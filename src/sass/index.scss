@@ -2,6 +2,7 @@
 @import "./mixins";
 @import "./base";
 
+// @import "./components/custom";
 @import "./components/header";
 @import "./components/cart";
 @import "./components/footer";
@@ -25,3 +26,9 @@
 @import "./components/posts";
 @import "./components/categories";
 @import "./components/authen";
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500&display=swap");
+
+* {
+    font-weight: 400;
+    font-family: "Epilogue";
+}
