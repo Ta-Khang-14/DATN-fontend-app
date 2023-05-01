@@ -18,16 +18,16 @@ const getCategories = asyncHandle(async (req, res, next) => {
 // @desc create new category
 // @access private
 const createCategory = asyncHandle(async (req, res, next) => {
-    const { categoryName } = req.body;
+    const { name } = req.body;
 
     // simple validate
-    if (!categoryName) {
+    if (!name) {
         return next(new ErrorResponse("Missing information", 404));
     }
 
     // all good
     const newCategory = new Category({
-        name: categoryName,
+        name: name,
     });
 
     await newCategory.save();

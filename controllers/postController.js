@@ -103,6 +103,7 @@ const updatePostById = asyncHandle(async (req, res, next) => {
     if (updateInformation["title"]) {
         const matchPost = await Post.findOne({
             title: updateInformation["title"],
+            _id: { $ne: id },
         });
         if (matchPost) {
             return next(new ErrorResponse("Title has taken", 400));
