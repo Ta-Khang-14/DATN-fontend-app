@@ -4,20 +4,29 @@ const ObjectId = Schema.ObjectId;
 
 const ProductScheme = new Schema(
     {
-        name: {
+        idUser: {
             type: String,
             required: true,
-            unique: true,
             trim: true,
         },
-        postedBy: {
-            type: Schema.Types.ObjectId,
-            ref: "users",
-        },
-        postedDate: {
+        userName: {
             type: String,
             required: true,
-            unique: true,
+            trim: true,
+        },
+        typeTime: {
+            type: Number,
+            required: true,
+            trim: true,
+        },
+        timeBook: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        status: {
+            type: Number,
+            required: true,
             trim: true,
         },
     },
@@ -29,4 +38,4 @@ const ProductScheme = new Schema(
 ProductScheme.index({
     title: "text",
 });
-module.exports = mongoose.model("tables", ProductScheme);
+module.exports = mongoose.model("user_table", ProductScheme);

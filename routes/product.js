@@ -9,6 +9,7 @@ const {
     deleteProductById,
     deleteProducts,
     getProductByCategoryId,
+    exportProducts,
 } = require("../controllers/productController");
 const { verifyAcessToken } = require("../middleware/verifyToken");
 const queryResults = require("../middleware/documentProcess");
@@ -20,6 +21,7 @@ const uploadCloud = multer({ storage: storage("Product") });
 const uploadFile = require("../middleware/uploadFile");
 const Product = require("../models/Product");
 
+router.get("/export", exportProducts);
 router.put(
     "/:id",
     verifyAcessToken,

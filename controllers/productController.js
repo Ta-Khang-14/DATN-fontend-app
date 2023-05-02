@@ -4,6 +4,7 @@ const Product = require("../models/Product");
 const Category = require("../models/Category");
 const ErrorResponse = require("../helpers/ErrorResponse");
 const sendResponse = require("../helpers/sendResponse");
+const ExcelJS = require("exceljs");
 
 // @route [POST] /api/products/
 // @desc create a new product
@@ -297,6 +298,53 @@ const deleteProducts = asyncHandle(async (req, res, next) => {
     }
     sendResponse(res, "Deleted Products successfully");
 });
+
+// @route [GET] /api/products/export
+// @desc export products
+// @access private
+const exportProducts = asyncHandle(async (req, res, next) => {
+    const workbook = new ExcelJS.Workbook();
+
+    // Tạo một worksheet mới
+    const worksheet = workbook.addWorksheet("My Sheet");
+
+    const products = await Product.find().populate("category");
+
+    console.log(products);
+
+    worksheet.columns = [
+        { header: "Mã sản phẩm", key: "_id", width: 20 },
+        { header: "Tên sản phẩm", key: "name", width: 40 },
+        { header: "Danh mục", key: "category", width: 20 },
+        { header: "Quốc gia", key: "country", width: 20 },
+        { header: "Đơn vị", key: "unit", width: 10 },
+        { header: "Giá", key: "price", width: 20 },
+    ];
+
+    if (products && products.length > 0) {
+        products.forEach((e) => {
+            worksheet.addRow({
+                _id: e._id,
+                name: e.title,
+                category: e.category?.name,
+                country: e.country,
+                unit: e.unit,
+                price: e.price,
+            });
+        });
+    }
+    res.setHeader(
+        "Content-Type",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    );
+    res.setHeader(
+        "Content-Disposition",
+        "attachment; filename=" + "ProductsFoodio.xlsx"
+    );
+    workbook.xlsx.write(res).then(() => {
+        res.end();
+    });
+});
 module.exports = {
     createProduct,
     getProducts,
@@ -305,4 +353,5 @@ module.exports = {
     deleteProductById,
     deleteProducts,
     getProductByCategoryId,
+    exportProducts,
 };
