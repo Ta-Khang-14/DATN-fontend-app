@@ -1,5 +1,6 @@
 .header {
-    background-image: linear-gradient($primary-color-dark, $primary-color);
+    background-color: #0e131f;
+    // background-image: linear-gradient($primary-color-dark, $primary-color);
 
     &__top {
         @include flex(center, space-between);

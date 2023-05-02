@@ -33,8 +33,8 @@ function HomePage() {
 
     const renderListPost = () => {
         return posts.map((post, index) => {
-            return index < 3 ? (
-                <Col md="12" lg="4" key={index}>
+            return index < 4 ? (
+                <Col md="12" lg="6" key={index}>
                     <div className="home__post__item">
                         <Link
                             className="home__post__item__img"
@@ -169,7 +169,7 @@ function HomePage() {
                     <Col md="12" className="home__post">
                         <div className="home__link--wrap">
                             <Link to="/posts" className="home__link">
-                                Mẹo hay sử dụng
+                                Bài viết
                             </Link>
                         </div>
                         <div className="home__post__list">

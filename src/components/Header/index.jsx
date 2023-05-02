@@ -123,8 +123,8 @@ function Header() {
                         <Col
                             xs="12"
                             sm="12"
-                            md="9"
-                            lg="7"
+                            md="6"
+                            lg="5"
                             className="header__middle__search"
                         >
                             <div className="form-wrap">
@@ -151,7 +151,7 @@ function Header() {
                                 </Form>
                             </div>
                         </Col>
-                        <Col xs="12" sm="12" md="3" lg="2">
+                        <Col xs="12" sm="12" md="6" lg="4">
                             <Cart />
                         </Col>
                     </Row>
