@@ -9,6 +9,7 @@ import Posts from "features/Other/page/Posts";
 import Products from "features/Products";
 import AddEditProduct from "features/Products/pages/AddEditProduct";
 import AdminProductPage from "features/Products/pages/AdminProductPage";
+import AdminTable from "features/Products/pages/AdminTable/AdminTable";
 import ProductDetail from "features/Products/pages/ProductDetail";
 import ProductList from "features/Products/pages/ProductList";
 import ProductSearch from "features/Products/pages/ProductSearch";
@@ -64,6 +65,10 @@ export const adminRoutes = [
                         component: AddEditProduct,
                     },
                 ],
+            },
+            {
+                path: "/admin/tables",
+                component: AdminTable,
             },
             {
                 path: "/admin/posts",

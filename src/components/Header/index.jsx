@@ -37,7 +37,7 @@ function Header() {
                         <p className="header__top__item header__top__item--social">
                             <span>Kết nối</span>
                             <a
-                                href="https://www.facebook.com/profile.php?id=100011702486663"
+                                href="https://www.facebook.com/vietkhang04"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
@@ -45,7 +45,7 @@ function Header() {
                                 <i className="header__top__icon fab fa-facebook"></i>
                             </a>
                             <a
-                                href="https://www.facebook.com/profile.php?id=100011702486663"
+                                href="https://www.facebook.com/vietkhang04"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
@@ -56,7 +56,7 @@ function Header() {
                     </div>
                     <div className="header__top__side">
                         <a
-                            href="https://www.facebook.com/profile.php?id=100011702486663"
+                            href="https://www.facebook.com/vietkhang04"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="header__top__item header__top__item--none"
