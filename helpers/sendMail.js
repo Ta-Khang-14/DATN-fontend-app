@@ -41,7 +41,7 @@ const sendUesrMail = async (res, options, data) => {
         });
 
         const content = {
-            from: `MiniMart <${EMAIL_NAME}>`,
+            from: `Foodio <${EMAIL_NAME}>`,
             to: email,
             subject,
             html: `${message}<br /><a href="${link}">${link}</a>`,
