@@ -79,7 +79,7 @@ img {
 }
 
 .booking-table {
-    height: 300px;
+    height: 500px;
     font-size: 14px;
 
     input {
@@ -157,4 +157,29 @@ img {
     .cart-page__item__action {
         text-align: left !important;
     }
+}
+.list-product__action__export {
+    margin-left: 8px;
+    background-color: #198754 !important;
+    border-color: #198754 !important;
+    &:hover {
+        background-color: #fff !important;
+        color: #198754 !important;
+    }
+}
+
+.list-table-custom {
+    text-align: center !important;
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+.list__header,
+.list__name {
+    padding-left: 8px !important;
+}
+.red {
+    color: $primary-color;
+}
+.green {
+    color: #198754;
 }

@@ -4,6 +4,15 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import {
+    LineChart,
+    Line,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    Legend,
+} from "recharts";
 
 function AdminHomePage() {
     const dispatch = useDispatch();
@@ -68,7 +77,7 @@ function AdminHomePage() {
                     </p>
                     <p className="admin__home__item__text">Doanh thu</p>
                 </Link>
-                <Link to="/admin/orders" className="admin__home__item">
+                <Link to="/admin/tables" className="admin__home__item">
                     <p className="admin__home__item__number">16</p>
                     <p className="admin__home__item__text">Số bàn</p>
                 </Link>

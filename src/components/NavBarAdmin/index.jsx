@@ -91,7 +91,7 @@ function NavBarAdmin({ haveHeading, isOpenMenu }) {
                         onClick={() => toggleActiveTask("products")}
                     >
                         <p className="navbar--admin__item__title">
-                            <i className="fas fa-box"></i> Quản lý bàn ăn
+                            <i class="fa-solid fa-table-list"></i>Quản lý bàn ăn
                         </p>
                         <i
                             className={cls({

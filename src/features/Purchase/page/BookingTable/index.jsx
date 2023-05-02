@@ -2,7 +2,7 @@ import { images } from "constant";
 
 import { useState, useCallback } from "react";
 import { Col, Container, Row } from "reactstrap";
-import { Controller } from "react-hook-form";
+import { Button } from "reactstrap";
 
 function BookingTable() {
     const [isBookingForm, setIsBookingForm] = useState(false);
@@ -116,10 +116,27 @@ function BookingTable() {
                             <div className="booking-table">
                                 <div>
                                     {" "}
+                                    <b>Họ và tên</b>
+                                </div>
+                                <input
+                                    type="text"
+                                    placeholder="Nhập họ tên người đặt"
+                                />
+                                <div>
+                                    {" "}
                                     <b>Đặt bàn</b> (Chỉ được đặt trước tối đa 1
                                     ngày)
                                 </div>
                                 <input type="date" />
+                                <div>
+                                    {" "}
+                                    <b>Số điện thoại liên lạc</b>
+                                </div>
+                                <input
+                                    type="number"
+                                    placeholder="Nhập số điện thoại liên lạc"
+                                    className="custom-input-number"
+                                />
                                 <b>Chọn khung giờ</b>
                                 <div className="booking-table-time">
                                     <div className="booking-label">
