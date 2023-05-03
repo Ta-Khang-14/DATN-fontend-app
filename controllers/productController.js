@@ -306,24 +306,26 @@ const exportProducts = asyncHandle(async (req, res, next) => {
     const workbook = new ExcelJS.Workbook();
 
     // Tạo một worksheet mới
-    const worksheet = workbook.addWorksheet("My Sheet");
+    const worksheet = workbook.addWorksheet("Danh sách sản phẩm");
 
     const products = await Product.find().populate("category");
 
-    console.log(products);
-
     worksheet.columns = [
-        { header: "Mã sản phẩm", key: "_id", width: 20 },
+        { header: "STT", key: "index", width: 5 },
+        { header: "Mã sản phẩm", key: "_id", width: 30 },
         { header: "Tên sản phẩm", key: "name", width: 40 },
         { header: "Danh mục", key: "category", width: 20 },
         { header: "Quốc gia", key: "country", width: 20 },
         { header: "Đơn vị", key: "unit", width: 10 },
-        { header: "Giá", key: "price", width: 20 },
+        { header: "Giá", key: "price", width: 10 },
     ];
-
+    worksheet.getRow(1).eachCell((cell) => {
+        cell.style = { font: { bold: true } };
+    });
     if (products && products.length > 0) {
-        products.forEach((e) => {
+        products.forEach((e, i) => {
             worksheet.addRow({
+                index: i + 1,
                 _id: e._id,
                 name: e.title,
                 category: e.category?.name,

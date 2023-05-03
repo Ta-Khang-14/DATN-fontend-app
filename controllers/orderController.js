@@ -23,7 +23,7 @@ const getOrders = asyncHandle(async (req, res, next) => {
     // get order
     let orders;
     if (role === "admin") {
-        orders = await Order.find().populate("products");
+        orders = await Order.find().populate("products").populate("user");
     } else if (role === "user") {
         orders = await Order.find({ user: userId }).populate("products");
     }
