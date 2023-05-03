@@ -14,6 +14,8 @@ import {
     Legend,
 } from "recharts";
 
+import { Col, Row } from "reactstrap";
+
 function AdminHomePage() {
     const dispatch = useDispatch();
     const { pagination } = useSelector((state) => state.products);
@@ -27,55 +29,26 @@ function AdminHomePage() {
         dispatch(fetchAccounts());
     }, [dispatch]);
 
+    const data = [
+        { name: "Tháng 1", uv: 4000, pv: 2400, amt: 2400 },
+        { name: "Tháng 2", uv: 3000, pv: 1398, amt: 2210 },
+        { name: "Tháng 3", uv: 2000, pv: 9800, amt: 2290 },
+        { name: "Tháng 4", uv: 2780, pv: 3908, amt: 2000 },
+        { name: "Tháng 5", uv: 1890, pv: 4800, amt: 2181 },
+        { name: "Tháng 6", uv: 2390, pv: 3800, amt: 2500 },
+        { name: "Tháng 7", uv: 3490, pv: 4300, amt: 2100 },
+    ];
+
     return (
         <div className="admin__home">
-            <h2 className="admin__home__heading">Thông số về website</h2>
-            <p className="admin__home__sub-heading">
+            <h2 className="admin__home__heading">
                 Số liệu về trang web của bạn
-            </p>
+            </h2>
 
             <div className="admin__home__info">
                 <Link to="/admin/orders" className="admin__home__item">
-                    <p className="admin__home__item__number">
-                        {
-                            orders.filter(
-                                (order) => order.status === "Chờ xác nhận"
-                            ).length
-                        }
-                    </p>
-                    <p className="admin__home__item__text">Chờ xác nhận</p>
-                </Link>
-                <Link to="/admin/orders" className="admin__home__item">
-                    <p className="admin__home__item__number">
-                        {
-                            orders.filter(
-                                (order) => order.status === "Chờ lấy hàng"
-                            ).length
-                        }
-                    </p>
-                    <p className="admin__home__item__text">Chờ lấy hàng</p>
-                </Link>
-                <Link to="/admin/orders" className="admin__home__item">
-                    <p className="admin__home__item__number">
-                        {
-                            orders.filter(
-                                (order) => order.status === "Đã thanh toán"
-                            ).length
-                        }
-                    </p>
-                    <p className="admin__home__item__text">Đã thanh toán</p>
-                </Link>
-                <Link to="/admin/orders" className="admin__home__item">
-                    <p className="admin__home__item__number">
-                        {orders
-                            .reduce((pre, curr) => {
-                                return curr.status === "Đã thanh toán"
-                                    ? pre + curr.sumMoney
-                                    : pre;
-                            }, 0)
-                            .toLocaleString()}
-                    </p>
-                    <p className="admin__home__item__text">Doanh thu</p>
+                    <p className="admin__home__item__number">{orders.length}</p>
+                    <p className="admin__home__item__text">Số đơn hàng</p>
                 </Link>
                 <Link to="/admin/tables" className="admin__home__item">
                     <p className="admin__home__item__number">16</p>
@@ -103,6 +76,105 @@ function AdminHomePage() {
                     </p>
                     <p className="admin__home__item__text">Tài khoản</p>
                 </Link>
+            </div>
+
+            <div className="divider"></div>
+
+            <div className="admin__home__chart">
+                <Row>
+                    <Col md="12" sm="12" lg="6">
+                        <div className="admin__home__heading">
+                            Doanh thu theo tháng
+                        </div>
+                        <div className="chart__main">
+                            <LineChart width={500} height={300} data={data}>
+                                <Line
+                                    type="monotone"
+                                    dataKey="pv"
+                                    stroke="#8884d8"
+                                    name="Sản phẩm 1"
+                                />
+                                <Line
+                                    type="monotone"
+                                    dataKey="amt"
+                                    stroke="#198754"
+                                    name="Sản phẩm 2"
+                                />
+                                <CartesianGrid stroke="#ccc" />
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip />
+                                <Legend />
+                            </LineChart>
+                        </div>
+                    </Col>
+                    <Col md="12" sm="12" lg="6">
+                        <div className="admin__home__heading">
+                            Tình trạng đơn hàng theo tháng
+                        </div>
+                        <div className="chart__main">
+                            <LineChart width={500} height={300} data={data}>
+                                <Line
+                                    type="monotone"
+                                    dataKey="pv"
+                                    stroke="#8884d8"
+                                />
+                                <CartesianGrid stroke="#ccc" />
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip />
+                                <Legend />
+                            </LineChart>
+                        </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md="12" sm="12" lg="6">
+                        <div className="admin__home__heading">
+                            Sản phẩm bán chạy theo tháng
+                        </div>
+                        <div className="chart__main">
+                            <LineChart width={500} height={300} data={data}>
+                                <Line
+                                    type="monotone"
+                                    dataKey="pv"
+                                    stroke="#8884d8"
+                                    name="Sản phẩm 1"
+                                />
+                                <Line
+                                    type="monotone"
+                                    dataKey="amt"
+                                    stroke="#198754"
+                                    name="Sản phẩm 2"
+                                />
+                                <CartesianGrid stroke="#ccc" />
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip />
+                                <Legend />
+                            </LineChart>
+                        </div>
+                    </Col>
+                    <Col md="12" sm="12" lg="6">
+                        <div className="admin__home__heading">
+                            Tình trạng đặt bàn theo tháng
+                        </div>
+                        <div className="chart__main">
+                            <LineChart width={500} height={300} data={data}>
+                                <Line
+                                    type="monotone"
+                                    dataKey="pv"
+                                    stroke="#8884d8"
+                                />
+                                <CartesianGrid stroke="#ccc" />
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip />
+                                <Legend />
+                            </LineChart>
+                        </div>
+                    </Col>
+                </Row>
             </div>
         </div>
     );

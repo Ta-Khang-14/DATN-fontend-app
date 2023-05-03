@@ -111,9 +111,6 @@ function HeaderAdmin() {
                             </div>
                         </div>
                     </div>
-                    <p className="header--admin__task__notification">
-                        <i className="far fa-bell"></i>
-                    </p>
                     <p className="header--admin__task__button" onClick={logOut}>
                         Đăng xuất
                     </p>

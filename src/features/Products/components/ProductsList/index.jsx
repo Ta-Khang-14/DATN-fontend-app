@@ -9,6 +9,7 @@ import Select from "react-select";
 import { Button, Input } from "reactstrap";
 import cls from "classnames";
 import ListItem from "../ListItem";
+import productsApi from "api/productsApi";
 
 ProductsList.propTypes = {
     productList: PropTypes.array,
@@ -39,6 +40,11 @@ function ProductsList({
         return sort
             ? search.replace(`sort=${sort}`, `sort=${field}`)
             : search + `&sort=${field}`;
+    };
+
+    const exportProducts = () => {
+        console.log("aaa");
+        productsApi.exportProduct();
     };
 
     // handle replace limit on query params
@@ -151,10 +157,12 @@ function ProductsList({
                         </Button>
                     </Link>
                     <div>
-                        <Button className="shadow-none list-product__action__add list-product__action__export">
-                            <i class="fa-solid fa-file-export"></i>
-                            Xuất khẩu
-                        </Button>
+                        <a href="http://localhost:3100/api/products/export">
+                            <Button className="shadow-none list-product__action__add list-product__action__export">
+                                <i class="fa-solid fa-file-export"></i>
+                                Xuất khẩu
+                            </Button>
+                        </a>
                     </div>
                     <div className="filter-task">
                         <i className="fas fa-filter"></i>
