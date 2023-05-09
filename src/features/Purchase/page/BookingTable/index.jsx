@@ -1,35 +1,83 @@
+import tableApi from "api/tableApi";
 import { images } from "constant";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Col, Container, Row } from "reactstrap";
-import { Button } from "reactstrap";
+import { toast } from "react-toastify";
 
 function BookingTable() {
     const [isBookingForm, setIsBookingForm] = useState(false);
-    const [tables, setTables] = useState([
-        {
-            _id: 1,
-            name: "Bàn 1",
-            date: "12:00 23/03/2023",
-            status: 1,
-            numTime: 1,
-        },
-        {
-            _id: 1,
-            name: "Bàn 1",
-            date: "12:00 23/03/2023",
-            status: 1,
-            numTime: 1,
-        },
-        {
-            _id: 1,
-            name: "Bàn 1",
-            date: "12:00 23/03/2023",
-            status: 1,
-            numTime: 1,
-        },
-    ]);
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [date, setDate] = useState("");
+    const [timeType, setTimeType] = useState("");
 
+    const [tables, setTables] = useState([]);
+
+    useEffect(async () => {
+        let data = (await tableApi.getTables()).data;
+        setTables(data.tableUsers);
+    }, []);
+
+    const bindingName = (event) => {
+        if (!event.target.value) {
+            toast.warning("Tên không được bỏ trống");
+            setName("");
+            return;
+        }
+        setName(event.target.value);
+    };
+
+    const bindingDate = (event) => {
+        if (!event.target.value) {
+            toast.warning("Ngày đặt không được bỏ trống");
+            setDate("");
+            return;
+        }
+
+        if (
+            new Date().getDate() > new Date(event.target.value).getDate() ||
+            new Date().getDate() < new Date(event.target.value).getDate() - 1
+        ) {
+            toast.warning("Ngày đặt là ngày hôm nay hoặc ngày mai");
+            setDate("");
+            return;
+        }
+        setDate(event.target.value);
+    };
+
+    const bindingSĐT = (event) => {
+        if (!event.target.value) {
+            toast.warning("Số điện thoại không được bỏ trống");
+            setPhone("");
+            return;
+        }
+        setPhone(event.target.value);
+    };
+
+    const bindingTimeType = (data) => {
+        setTimeType(data);
+    };
+
+    const bookingTable = async () => {
+        if (!name || !phone || !date || !timeType) {
+            toast.warning("Dữ liệu không được bỏ trống");
+            return;
+        }
+        let data = {
+            name,
+            phone,
+            date,
+            timeType,
+        };
+        let res = await tableApi.bookingTable(data);
+        console.log(res);
+        if (res.success) {
+            toast.success("Đặt bàn thành công");
+        } else {
+            toast.warning(res.message);
+        }
+    };
     const convertStatus = (status) => {
         switch (status) {
             case 0:
@@ -41,23 +89,57 @@ function BookingTable() {
         }
     };
 
+    const convertTimeType = (type) => {
+        switch (type) {
+            case 1:
+                return "10:00";
+            case 2:
+                return "11:00";
+            case 3:
+                return "12:00";
+            case 4:
+                return "17:00";
+            case 5:
+                return "18:00";
+            case 6:
+                return "19:00";
+            case 7:
+                return "20:00";
+        }
+    };
+
     const changeBookingTable = useCallback(() => {
         setIsBookingForm((data) => !data);
     }, [isBookingForm]);
 
-    const renderCart = () => {
-        return tables.map((item) => (
-            <div className="cart-page__item table-custom">
-                <div className="cart-page__item__product">{item.name}</div>
-                <div className="cart-page__item__price">{item.date}</div>
-                <div className="cart-page__item__product">
-                    {convertStatus(item.status)}
-                </div>
-                <div className="cart-page__item__total">
-                    <div className="custom-btn">Hủy</div>
-                </div>
-            </div>
-        ));
+    // const renderCart = () => {
+    //     if (tables) {
+    //         console.log(tables);
+    //         return tables.map((item) => (
+    //             <div className="cart-page__item table-custom">
+    //                 <div className="cart-page__item__product">{item.name}</div>
+    //                 <div className="cart-page__item__price">{item.date}</div>
+    //                 <div className="cart-page__item__product">
+    //                     {convertStatus(item.status)}
+    //                 </div>
+    //                 <div className="cart-page__item__total">
+    //                     <div className="custom-btn">Hủy</div>
+    //                 </div>
+    //             </div>
+    //         ));
+    //     } else {
+    //         return "";
+    //     }
+    // };
+    const changeStatusTable = async (data) => {
+        let res = await tableApi.updateTable(data);
+        if (res && res.success) {
+            toast.success("Hủy đặt bàn thành công");
+            let dataTable = (await tableApi.getTables()).data;
+            setTables(dataTable.tableUsers);
+        } else {
+            toast.warn("Hủy đặt bàn thất bại");
+        }
     };
 
     return (
@@ -65,7 +147,7 @@ function BookingTable() {
             <Row>
                 {!isBookingForm ? (
                     <Col md="12">
-                        {tables.length === 0 ? (
+                        {!tables || tables.length === 0 ? (
                             <div className="cart-page--empty">
                                 <img src={images.EMPTYCART} alt="empty" />
                                 <p>Bạn chưa đặt bàn nào</p>
@@ -93,7 +175,40 @@ function BookingTable() {
                                     </div>
                                 </div>
                                 <div className="cart-page__list bg-white">
-                                    {renderCart()}
+                                    {tables.map((item) => (
+                                        <div className="cart-page__item table-custom">
+                                            <div className="cart-page__item__product">
+                                                {item.tableID.name}
+                                            </div>
+                                            <div className="cart-page__item__price">
+                                                {convertTimeType(
+                                                    item.timeType
+                                                ) +
+                                                    " - " +
+                                                    item.date}
+                                            </div>
+                                            <div className="cart-page__item__product">
+                                                {convertStatus(item.status)}
+                                            </div>
+                                            <div className="cart-page__item__total">
+                                                {item.status != 2 ? (
+                                                    <div
+                                                        className="custom-btn"
+                                                        onClick={() =>
+                                                            changeStatusTable({
+                                                                id: item._id,
+                                                                status: 2,
+                                                            })
+                                                        }
+                                                    >
+                                                        Hủy
+                                                    </div>
+                                                ) : (
+                                                    ""
+                                                )}
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                                 <div className="cart-page__item cart-page--margin bg-white ">
                                     <div className="cart-page__item__summary">
@@ -121,13 +236,14 @@ function BookingTable() {
                                 <input
                                     type="text"
                                     placeholder="Nhập họ tên người đặt"
+                                    onChange={bindingName}
                                 />
                                 <div>
                                     {" "}
                                     <b>Đặt bàn</b> (Chỉ được đặt trước tối đa 1
                                     ngày)
                                 </div>
-                                <input type="date" />
+                                <input type="date" onChange={bindingDate} />
                                 <div>
                                     {" "}
                                     <b>Số điện thoại liên lạc</b>
@@ -136,6 +252,7 @@ function BookingTable() {
                                     type="number"
                                     placeholder="Nhập số điện thoại liên lạc"
                                     className="custom-input-number"
+                                    onChange={bindingSĐT}
                                 />
                                 <b>Chọn khung giờ</b>
                                 <div className="booking-table-time">
@@ -143,9 +260,36 @@ function BookingTable() {
                                         Buổi trưa
                                     </div>
                                     <div className="list-time">
-                                        <div className="time-item">10:00</div>
-                                        <div className="time-item">11:00</div>
-                                        <div className="time-item">12:00</div>
+                                        <div
+                                            className={
+                                                timeType == 1
+                                                    ? "time-item-active"
+                                                    : "time-item"
+                                            }
+                                            onClick={() => bindingTimeType(1)}
+                                        >
+                                            10:00
+                                        </div>
+                                        <div
+                                            className={
+                                                timeType == 2
+                                                    ? "time-item-active"
+                                                    : "time-item"
+                                            }
+                                            onClick={() => bindingTimeType(2)}
+                                        >
+                                            11:00
+                                        </div>
+                                        <div
+                                            className={
+                                                timeType == 3
+                                                    ? "time-item-active"
+                                                    : "time-item"
+                                            }
+                                            onClick={() => bindingTimeType(3)}
+                                        >
+                                            12:00
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="booking-table-time">
@@ -153,17 +297,55 @@ function BookingTable() {
                                         Buổi chiều
                                     </div>
                                     <div className="list-time">
-                                        <div className="time-item">17:00</div>
-                                        <div className="time-item">18:00</div>
-                                        <div className="time-item">19:00</div>
-                                        <div className="time-item">20:00</div>
-                                        <div className="time-item">21:00</div>
+                                        <div
+                                            className={
+                                                timeType == 4
+                                                    ? "time-item-active"
+                                                    : "time-item"
+                                            }
+                                            onClick={() => bindingTimeType(4)}
+                                        >
+                                            17:00
+                                        </div>
+                                        <div
+                                            className={
+                                                timeType == 5
+                                                    ? "time-item-active"
+                                                    : "time-item"
+                                            }
+                                            onClick={() => bindingTimeType(5)}
+                                        >
+                                            18:00
+                                        </div>
+                                        <div
+                                            className={
+                                                timeType == 6
+                                                    ? "time-item-active"
+                                                    : "time-item"
+                                            }
+                                            onClick={() => bindingTimeType(6)}
+                                        >
+                                            19:00
+                                        </div>
+                                        <div
+                                            className={
+                                                timeType == 7
+                                                    ? "time-item-active"
+                                                    : "time-item"
+                                            }
+                                            onClick={() => bindingTimeType(7)}
+                                        >
+                                            20:00
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="booking-table-action">
-                            <div className="btn-normal cusor-poitnter">
+                            <div
+                                className="btn-normal cusor-poitnter"
+                                onClick={bookingTable}
+                            >
                                 Tiến hành đặt bàn
                             </div>
                             <div

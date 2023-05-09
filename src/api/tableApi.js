@@ -1,19 +1,17 @@
 import axiosClient from "./axiosClient";
 
-const baseUrl = "admin/user/";
+const baseUrl = "/table";
 
 const tableApi = {
-    getUsers: () => {
+    bookingTable: (data) => {
+        return axiosClient.post(baseUrl, data);
+    },
+    getTables: () => {
         return axiosClient.get(baseUrl);
     },
-    deleteUserById: (id) => {
-        return axiosClient.delete(baseUrl + "delete/" + id);
-    },
-    deleteMultiUser: () => {
-        return axiosClient.delete(baseUrl + "delete");
-    },
-    activeUser: (id) => {
-        return axiosClient.put(baseUrl + "activated/" + id);
+
+    updateTable: (data) => {
+        return axiosClient.post(baseUrl + "/edit", data);
     },
 };
 

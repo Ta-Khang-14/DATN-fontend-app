@@ -112,6 +112,10 @@ img {
         border: 1px solid $primary-color !important;
     }
 }
+.btn-custom.active {
+    background-color: #fff !important;
+    border: 1px solid $primary-color !important;
+}
 .list-time {
     display: flex;
     .time-item {
@@ -127,6 +131,11 @@ img {
         }
     }
     .time-item-active {
+        border: 1px solid $primary-color;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 0px 4px;
         color: #fff;
         background-color: $primary-color;
     }
