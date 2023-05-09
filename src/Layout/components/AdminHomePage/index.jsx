@@ -1,6 +1,6 @@
 import { fetchAccounts } from "app/accountSlice";
 import { fetchOrders } from "app/purchaseSlide";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -23,21 +23,66 @@ function AdminHomePage() {
     const posts = useSelector((state) => state.posts.listPosts);
     const accounts = useSelector((state) => state.accounts);
     const orders = useSelector((state) => state.purchase.orders);
+    const [dataChart1, setDataChart1] = useState([]);
+    const [dataChart2, setDataChart2] = useState([]);
 
-    useEffect(() => {
-        dispatch(fetchOrders());
-        dispatch(fetchAccounts());
+    useEffect(async () => {
+        await dispatch(fetchOrders());
+        await dispatch(fetchAccounts());
+        handleDataMonth();
+        handleDataProduct();
     }, [dispatch]);
 
-    const data = [
-        { name: "Tháng 1", uv: 4000, pv: 2400, amt: 2400 },
-        { name: "Tháng 2", uv: 3000, pv: 1398, amt: 2210 },
-        { name: "Tháng 3", uv: 2000, pv: 9800, amt: 2290 },
-        { name: "Tháng 4", uv: 2780, pv: 3908, amt: 2000 },
-        { name: "Tháng 5", uv: 1890, pv: 4800, amt: 2181 },
-        { name: "Tháng 6", uv: 2390, pv: 3800, amt: 2500 },
-        { name: "Tháng 7", uv: 3490, pv: 4300, amt: 2100 },
-    ];
+    // Handle data
+    const handleDataMonth = () => {
+        let currentMonth = new Date().getMonth() + 1;
+        let chart1 = [];
+        for (let i = currentMonth; i > 0; i--) {
+            if (currentMonth - i > 4) {
+                break;
+            }
+            let sumMoney = 0;
+
+            orders.forEach((item) => {
+                if (new Date(item.updatedAt).getMonth() + 1 == i) {
+                    sumMoney += item.sumMoney;
+                }
+            });
+
+            chart1.push({
+                name: `Tháng ${i}`,
+                sumMoney: sumMoney,
+            });
+        }
+        setDataChart1(chart1);
+    };
+
+    const handleDataProduct = () => {
+        let currentMonth = new Date().getMonth() + 1;
+        let chartData = [];
+        console.log(orders);
+        orders.forEach((item) => {
+            if (item.products && item.products.length > 0) {
+                item.products.forEach((product, i) => {
+                    let index = chartData.findIndex(
+                        (e) => e._id == product._id
+                    );
+                    if (index != -1) {
+                        chartData[index].sum += item.quantity[i];
+                    } else {
+                        chartData.push({
+                            _id: product._id,
+                            sum: item.quantity[i],
+                            name: product.title,
+                        });
+                    }
+                });
+            }
+        });
+
+        chartData.sort((a, b) => b.sum - a.sum).length = 4;
+        setDataChart2(chartData);
+    };
 
     return (
         <div className="admin__home">
@@ -87,18 +132,16 @@ function AdminHomePage() {
                             Doanh thu theo tháng
                         </div>
                         <div className="chart__main">
-                            <LineChart width={500} height={300} data={data}>
+                            <LineChart
+                                width={500}
+                                height={300}
+                                data={dataChart1}
+                            >
                                 <Line
                                     type="monotone"
-                                    dataKey="pv"
+                                    dataKey="sumMoney"
                                     stroke="#8884d8"
-                                    name="Sản phẩm 1"
-                                />
-                                <Line
-                                    type="monotone"
-                                    dataKey="amt"
-                                    stroke="#198754"
-                                    name="Sản phẩm 2"
+                                    name="Tổng tiền"
                                 />
                                 <CartesianGrid stroke="#ccc" />
                                 <XAxis dataKey="name" />
@@ -110,61 +153,19 @@ function AdminHomePage() {
                     </Col>
                     <Col md="12" sm="12" lg="6">
                         <div className="admin__home__heading">
-                            Tình trạng đơn hàng theo tháng
+                            Sản phẩm bán chạy nhất
                         </div>
                         <div className="chart__main">
-                            <LineChart width={500} height={300} data={data}>
+                            <LineChart
+                                width={500}
+                                height={300}
+                                data={dataChart2}
+                            >
                                 <Line
                                     type="monotone"
-                                    dataKey="pv"
+                                    dataKey="sum"
                                     stroke="#8884d8"
-                                />
-                                <CartesianGrid stroke="#ccc" />
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                                <Tooltip />
-                                <Legend />
-                            </LineChart>
-                        </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md="12" sm="12" lg="6">
-                        <div className="admin__home__heading">
-                            Sản phẩm bán chạy theo tháng
-                        </div>
-                        <div className="chart__main">
-                            <LineChart width={500} height={300} data={data}>
-                                <Line
-                                    type="monotone"
-                                    dataKey="pv"
-                                    stroke="#8884d8"
-                                    name="Sản phẩm 1"
-                                />
-                                <Line
-                                    type="monotone"
-                                    dataKey="amt"
-                                    stroke="#198754"
-                                    name="Sản phẩm 2"
-                                />
-                                <CartesianGrid stroke="#ccc" />
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                                <Tooltip />
-                                <Legend />
-                            </LineChart>
-                        </div>
-                    </Col>
-                    <Col md="12" sm="12" lg="6">
-                        <div className="admin__home__heading">
-                            Tình trạng đặt bàn theo tháng
-                        </div>
-                        <div className="chart__main">
-                            <LineChart width={500} height={300} data={data}>
-                                <Line
-                                    type="monotone"
-                                    dataKey="pv"
-                                    stroke="#8884d8"
+                                    name="Số lượng"
                                 />
                                 <CartesianGrid stroke="#ccc" />
                                 <XAxis dataKey="name" />

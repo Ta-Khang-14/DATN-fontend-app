@@ -42,11 +42,6 @@ function ProductsList({
             : search + `&sort=${field}`;
     };
 
-    const exportProducts = () => {
-        console.log("aaa");
-        productsApi.exportProduct();
-    };
-
     // handle replace limit on query params
     const replaceLimit = (number) => {
         return "?limit=" + number;
